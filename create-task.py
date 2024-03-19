@@ -1,11 +1,14 @@
+import random
 
-s1 = 0
-s2 = 0
-scores = [s1, s2]
+
+scores = [0, 0]
+s1 = scores[0]
+s2 = scores[1]
 
 result = ["", ""]
 
-rounds = list(range(3))
+rounds = list(range(2))
+print(rounds)
 
 def player(currentRound):
     if (currentRound%2) == 0:
@@ -17,23 +20,38 @@ def diceRoll():
     return random.randint(1, 6)
 
 def game():
-    print("Start")
+    print("The objective of this game is to get a higher score than the other player without going above 13")
+    print("")
+
+    print(" - GAME START - ")
     for i in rounds:
-        print("   - ROUND ", 1, " -")
+        print("")
+        #print("   - ROUND ", str(i+1), " -")
         print("    SCORES:")
         print("Player 1: ", scores[0], " | Player 2: ", scores[1])
         print("")
 
-        choice = input("Player", player(i), ", do you want to roll? (y or n)")
-        if choice == "y":
-            while choice == "y":
-                roll = diceRoll()
-                sc = scores[player(i)-1]
-                sc += roll
-                print("Rolled:", roll, " Total: ", sc)
-                if s1 > 13:
-                    result[0] = "Lose"
-                elif sc
+        choice = "y"
+        print(" - Player", player(i), "turn - ")
+        while choice == "y":
+            roll = diceRoll()
+            scores[int(player(i))-1] += roll
+            sc = scores[int(player(i))-1]
+            print("Rolled:", roll, " Total: ", sc)
 
-                choice == input("Roll again? (y or n)")
-        else:
+            if sc > 13:
+                result[int(player(i))-1] = "Over"
+                print("Over")
+                choice = "n"
+            elif sc == 13:
+                result[int(player(i))-1] = "Max"
+                print("Max")
+                choice = "n"
+            elif sc < 13:
+                result[int(player(i))-1] = "Under"
+                choice = input("Roll again? (y or n)")
+                print("")
+    
+    if 
+
+game()
