@@ -1,9 +1,6 @@
 import random
 
 scores = [0, 0]
-
-result = ["", ""]
-
 rounds = list(range(2))
 
 def player(currentRound):
@@ -11,9 +8,6 @@ def player(currentRound):
         return "1"
     else:
         return "2"
-
-def diceRoll():
-    return random.randint(1, 6)
 
 def winner(s1, s2):
     if s1 > 13:
@@ -38,8 +32,6 @@ def winner(s1, s2):
         elif s2 < s1:
             return "Player 1 wins!"
 
-
-
 def game():
     print("The objective of this game is to roll dice and try to get a higher score than the other player without going over 13.")
     print("")
@@ -47,7 +39,6 @@ def game():
     print(" - GAME START - ")
     for i in rounds:
         print("")
-        #print("   - ROUND ", str(i+1), " -")
         print("      SCORES:")
         print("Player 1: ", scores[0], " | Player 2: ", scores[1])
         print("")
@@ -55,7 +46,7 @@ def game():
         choice = "y"
         print(" - Player", player(i), "turn - ")
         while choice == "y":
-            roll = diceRoll()
+            roll = random.randint(1, 6)
             scores[int(player(i))-1] += roll
             sc = scores[int(player(i))-1]
             print("Rolled:", roll, " Total: ", sc)
