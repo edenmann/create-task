@@ -1,5 +1,6 @@
 import random
 
+
 scores = [0, 0]
 rounds = list(range(2))
 
@@ -9,21 +10,21 @@ def player(currentRound):
     else:
         return "2"
 
-def winner(s1, s2):
-    if s1 > 13:
-        if s2 > 13:
+def winner(s1, s2, max):
+    if s1 > max:
+        if s2 > max:
             return "Tie!"
-        elif s2 <= 13:
+        elif s2 <= max:
             return "Player 2 wins!"
-    elif s1 == 13:
-        if s2 > 13:
+    elif s1 == max:
+        if s2 > max:
             return "Player 1 wins!"
-        elif s2 == 13:
+        elif s2 == max:
             return "Tie!"
-        elif s2 < 13:
+        elif s2 < max:
             return "Player 1 wins!"
-    elif s1 < 13:
-        if s2 > 13:
+    elif s1 < max:
+        if s2 > max:
             return "Player 1 wins!"
         elif s2 > s1:
             return "Player 2 wins!"
@@ -32,8 +33,8 @@ def winner(s1, s2):
         elif s2 < s1:
             return "Player 1 wins!"
 
-def game():
-    print("The objective of this game is to roll dice and try to get a higher score than the other player without going over 13.")
+def game(max):
+    print("The objective of this game is to roll dice and try to get a higher score than the other player without going over the set limit.")
     print("")
 
     print(" - GAME START - ")
@@ -51,16 +52,16 @@ def game():
             sc = scores[int(player(i))-1]
             print("Rolled:", roll, " Total: ", sc)
 
-            if sc > 13:
-                print("Score over 13")
+            if sc > max:
+                print("Score over maximum")
                 choice = "n"
-            elif sc == 13:
+            elif sc == max:
                 print("Max score reached")
                 choice = "n"
-            elif sc < 13:
+            elif sc < max:
                 choice = input("Would you like to roll again? (y or n) ")
                 print("")
     
-    print(winner(scores[0], scores[1]))
+    print(winner(scores[0], scores[1], max))
 
-game()
+game(int(input("Pick a maximum score: ")))
