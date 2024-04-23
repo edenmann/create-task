@@ -2,7 +2,6 @@ import random
 
 scores = [0, 0]
 rounds = [0, 1]
-print(rounds)
 
 def player(currentRound):
     if (currentRound%2) == 0:
